@@ -15,7 +15,7 @@ import { AppController } from "./app.controller";
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      url: "mysql://d528sbzt3wx0xtnlb2z8:pscale_pw_oaD2rj93KUkjltmzCo4cbPYJmeuTRNTlJ4UVaffC4Ln@aws.connect.psdb.cloud/araza?ssl={rejectUnauthorized:true}",
+      url: process.env.DB_URL,
       entities: [User, Store, Product],
       synchronize: false,
       logging: false,
