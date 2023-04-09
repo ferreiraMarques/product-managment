@@ -1,0 +1,21 @@
+.env
+
+# Versioning and metadata
+.git
+.gitignore
+.dockerignore
+
+# Build dependencies
+dist.do
+node_modules
+./*/__mocks__
+
+# Environment (contains sensitive data)
+*.env
+
+# Misc
+.eslintrc.js
+.prettierrc
+README.md
+domain.key
+Product Managment.postman_collection.json
