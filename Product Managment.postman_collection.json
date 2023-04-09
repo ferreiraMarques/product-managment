@@ -213,13 +213,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/stores/1",
+							"raw": "{{baseUrl}}/stores/{{storeId}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"stores",
-								"1"
+								"{{storeId}}"
 							]
 						}
 					},
@@ -349,7 +349,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": {{emailLogin}},\r\n    \"password\": {{passwordLogin}}\r\n}",
+							"raw": "{\r\n    \"email\": \"{{emailLogin}}\",\r\n    \"password\": \"{{passwordLogin}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -395,7 +395,7 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "localhost:3000",
+			"value": "https://product-managment-araza.qegd3asf2640a.us-east-1.cs.amazonlightsail.com/",
 			"type": "string"
 		},
 		{
