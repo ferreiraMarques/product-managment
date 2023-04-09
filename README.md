@@ -1,73 +1,197 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Product Managment
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Product Managment Test
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`JWT_SECRET`: jwt secret for the firm
+
+`DB_URL`: url to the database
+
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  git add .
+  git commit -m "commit"
+  git push origin dev
+  create pull request to master
+  deploy to docker hub
+```
+
 
 ## Installation
 
-```bash
-$ npm install
-```
-
-## Running the app
+Install product-management with npm
 
 ```bash
-# development
-$ npm run start
+  cd product-management
+  npm i
+  npm run start
+```
+    
+## API Reference
 
-# watch mode
-$ npm run start:dev
+### Authentication
+#### Login
+Description: this endpoint is used to authenticate with the system via email and password, it will return the access token and username.
 
-# production mode
-$ npm run start:prod
+
+```http
+  POST {{baseUrl}}/auth/login
 ```
 
-## Test
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | `string` | **Required**. email user |
+| `password ` | `string` | **Required**. password user|
 
-```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
+### Products
 
-# test coverage
-$ npm run test:cov
+
+#### Create Product
+Description: this end point is used to create a new product and add to store.
+
+
+```http
+  POST {{baseUrl}}/products
 ```
 
-## Support
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**. name product |
+| `price`      | `decimal` | **Required**. price product |
+| `description`      | `string` | **Required**. description product |
+| `storeId`      | `integer` | **Required**. Id store |
+| `stock`      | `integer` | **Required**. stock of product |
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
+#### Get Products
+Description: this endpoint is used to obtain all registered products.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+```http
+  GET {{baseUrl}}/products 
+```
 
-Nest is [MIT licensed](LICENSE).
+#### Get Product
+Description: this endpoint is used to obtain a single product if it is registered.
+
+
+```http
+  GET {{baseUrl}}/products/{{productId}}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `productId` | `integer` | **Required**. id product |
+
+
+#### Update Product
+Description: this endpoint is used to update the data of a product.
+
+
+```http
+  PUT {{baseUrl}}/products/{{productId}} 
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `productId` | `integer` | **Required**. id product |
+| `name`      | `string` | **Required**. name product |
+| `price`      | `decimal` | **Required**. price product |
+| `description`      | `string` | **Required**. description product |
+| `storeId`      | `integer` | **Required**. Id store |
+| `stock`      | `integer` | **Required**. stock of product |
+
+
+#### Delete Product
+Description: this end point is used to eliminate a product.
+
+
+```http
+  DELETE {{baseUrl}}/products/{{productId}}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `productId` | `integer` | **Required**. id product |
+
+
+
+### Stores
+
+
+#### Create Store
+Description: this endpoint is used to create a new locale.
+
+
+```http
+  POST {{baseUrl}}/stores 
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required**. name store |
+| `address`      | `string` | **Required**. address store |
+| `phone`      | `integer` | **Required**.phone store example: +5601235678908 |
+
+
+#### Get Stores
+Description: this endpoint is used to get all registered stores.
+
+
+
+```http
+  GET {{baseUrl}}/stores 
+```
+
+#### Get Store
+Description: this endpoint is used to obtain a store if it is registered.
+
+
+```http
+  GET {{baseUrl}}/stores/{{storeId}} 
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `storeId` | `integer` | **Required**. id store |
+
+
+#### Update Store
+Description: this endpoint is used to update the data of a store.
+
+
+```http
+  PUT {{baseUrl}}/stores/{{storeId}}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `storeId`      | `integer` | **Required**. id store |
+| `name`      | `string` | **Required**. name store |
+| `address`      | `string` | **Required**. address store |
+| `phone`      | `integer` | **Required**.phone store example: +5601235678908 |
+
+
+#### Delete Store
+Description: this end point is used to eliminate a store.
+
+
+```http
+  DELETE {{baseUrl}}/stores/{{storeId}} 
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `storeId` | `integer` | **Required**. id store |
+
