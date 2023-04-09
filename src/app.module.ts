@@ -9,7 +9,7 @@ import { Product } from './products/entities/product.entity';
 import { StoresController } from './stores/stores.controller';
 import { ProductsController } from './products/products.controller';
 import { JwtMiddleware } from './middleware/jwt.middleware';
-import { AuthService } from './auth/auth.service';
+import { AppController } from "./app.controller";
 
 @Module({
   imports: [
@@ -25,7 +25,7 @@ import { AuthService } from './auth/auth.service';
     ProductsModule,
     AuthModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [JwtMiddleware],
 })
 export class AppModule implements NestModule {
